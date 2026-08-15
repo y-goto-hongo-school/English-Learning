@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="英語1年計画">
+<meta name="theme-color" content="#0E1420">
+<meta name="description" content="44歳・ゼロからの1年間 英語再構築計画。50週分のフレーズと日々の記録。">
+<title>1年 英語再構築計画</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F6F3; --card:#FFF; --night:#0E1420;
+  --ink:#0E1420; --ink2:#5C6472; --ink3:#9AA1AC;
+  --line:#E5E5DF; --line2:#F0F0EA;
+  --gold:#E5A33C; --green:#3E8E6E; --red:#D0402E;
+  --disp:"Bricolage Grotesque",system-ui,-apple-system,sans-serif;
+  --jp:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Noto Sans JP",sans-serif;
+  --mc:"Hiragino Mincho ProN","Yu Mincho",YuMincho,serif;
+  --mo:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--jp);font-size:15px;line-height:1.8;
+  padding-top:env(safe-area-inset-top);letter-spacing:.005em}
+.wrap{max-width:840px;margin:0 auto;padding:0 14px 90px}
+h1,h2,h3{margin:0;font-family:var(--disp);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+p{margin:0 0 13px}
+b,strong{font-weight:700}
+a{color:inherit}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:40;background:rgba(246,246,243,.82);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);margin:0 -14px 0;padding:9px 14px}
+.nav-in{max-width:840px;margin:0 auto;display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{font-family:var(--mo);font-size:11px;letter-spacing:.02em;text-decoration:none;color:var(--ink2);
+  padding:5px 10px;border-radius:99px;white-space:nowrap;border:1px solid transparent}
+.nav a.mark{color:var(--ink);border-color:var(--line);background:var(--card)}
+
+/* hero */
+.hero{margin-top:22px}
+.kicker{font-family:var(--mo);font-size:10.5px;letter-spacing:.16em;color:var(--red);text-transform:uppercase;margin-bottom:9px}
+.hero h1{font-size:clamp(30px,8.5vw,50px)}
+.hero .sub{color:var(--ink2);font-size:14.5px;margin-top:11px;max-width:36em}
+
+/* bento */
+.bento{display:grid;gap:11px;margin-top:20px}
+@media(min-width:660px){.bento{grid-template-columns:1fr 1fr}.span2{grid-column:1/-1}}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:17px 17px 16px}
+.tile.dark{background:var(--night);color:#fff;border-color:var(--night)}
+.tile h3{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.lbl{font-family:var(--mo);font-size:9.5px;letter-spacing:.15em;color:var(--ink3);text-transform:uppercase;display:block;margin-bottom:8px}
+.tile.dark .lbl{color:#7E8899}
+
+/* rank tile */
+.rank-n{font-family:var(--disp);font-size:clamp(25px,6.4vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.12}
+.rank-bar{height:5px;border-radius:99px;background:rgba(255,255,255,.15);margin:14px 0 7px;overflow:hidden}
+.rank-bar i{display:block;height:100%;background:var(--gold);border-radius:99px;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.rank-nx{font-family:var(--mo);font-size:10.5px;color:#8B95A6}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.13);border-radius:9px;overflow:hidden;margin-top:16px}
+.kpi div{background:var(--night);padding:11px 2px;text-align:center}
+.kpi b{display:block;font-family:var(--mo);font-weight:700;font-size:17px;letter-spacing:-.02em}
+.kpi span{font-size:9.5px;color:#7E8899}
+
+/* coach */
+.coach{border-left:3px solid var(--red);padding-left:13px;font-size:14px;line-height:1.8}
+
+/* today */
+.task{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid var(--line2);cursor:pointer;font-size:14px}
+.task:last-of-type{border-bottom:0}
+.task input{appearance:none;-webkit-appearance:none;width:19px;height:19px;flex:0 0 auto;margin:0;border:1.5px solid #C9CED6;border-radius:6px;position:relative;cursor:pointer;transition:.15s}
+.task input:checked{background:var(--green);border-color:var(--green)}
+.task input:checked::after{content:"";position:absolute;left:6px;top:2px;width:4px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(42deg)}
+.task .pt{margin-left:auto;font-family:var(--mo);font-size:10.5px;color:var(--ink3)}
+.mins{display:flex;gap:5px;margin:12px 0 0}
+.mins button{flex:1;border:1px solid var(--line);background:none;border-radius:9px;padding:8px 0;cursor:pointer;font-family:var(--mo);font-size:12.5px;color:var(--ink2)}
+.mins button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.save{width:100%;margin-top:12px;border:0;border-radius:10px;background:var(--ink);color:#fff;padding:13px 0;
+  font-family:var(--jp);font-size:15px;font-weight:700;cursor:pointer}
+.save.done{background:var(--green)}
+
+/* week phrases */
+.wk-head{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:3px}
+.wk-no{font-family:var(--mo);font-size:11px;color:var(--red);letter-spacing:.08em;font-weight:700}
+.wk-ttl{font-family:var(--disp);font-size:19px;font-weight:800;letter-spacing:-.02em}
+.wk-meta{font-family:var(--mo);font-size:10px;color:var(--ink3);margin-bottom:12px}
+.ph{display:flex;gap:11px;padding:12px 0;border-bottom:1px solid var(--line2);cursor:pointer}
+.ph:last-child{border-bottom:0}
+.ph input{appearance:none;-webkit-appearance:none;width:18px;height:18px;flex:0 0 auto;margin:3px 0 0;border:1.5px solid #C9CED6;border-radius:99px;position:relative;cursor:pointer;transition:.15s}
+.ph input:checked{background:var(--gold);border-color:var(--gold)}
+.ph input:checked::after{content:"";position:absolute;left:5.5px;top:2px;width:4px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(42deg)}
+.ph-en{font-family:var(--disp);font-size:17px;font-weight:600;letter-spacing:-.015em;line-height:1.4}
+.ph input:checked~div .ph-en{color:var(--ink3)}
+.ph-ja{font-size:12.5px;color:var(--ink2);line-height:1.65;margin-top:2px}
+.wk-nav{display:flex;gap:7px;margin-top:14px}
+.wk-nav button{flex:1;border:1px solid var(--line);background:none;border-radius:9px;padding:8px 0;cursor:pointer;font-family:var(--mo);font-size:11.5px;color:var(--ink2)}
+.wk-nav button.now{background:var(--ink);color:#fff;border-color:var(--ink)}
+.rv{background:#FDF6EE;border:1px solid #F0DEC5;border-radius:10px;padding:13px 14px;font-size:13.5px;line-height:1.8}
+.rv ul{margin:8px 0 0;padding-left:19px}
+.rv li{margin-bottom:5px}
+
+/* 50 week track */
+.track{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+@media(min-width:520px){.track{grid-template-columns:repeat(25,1fr)}}
+.cellw{aspect-ratio:1;border-radius:5px;background:#E9E9E2;border:0;padding:0;cursor:pointer;
+  font-family:var(--mo);font-size:8.5px;color:#A8ADB5;display:grid;place-items:center;transition:.15s}
+.cellw.rev{background:#F3E4D3;color:#B99667}
+.cellw.done{background:var(--ink);color:#fff}
+.cellw.done.rev{background:var(--gold);color:#fff}
+.cellw.now{outline:2px solid var(--red);outline-offset:1px;color:var(--red);font-weight:700}
+.cellw.now.done{color:#fff}
+.tk-key{display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mo);font-size:9.5px;color:var(--ink3);margin-top:11px;align-items:center}
+.tk-key i{width:9px;height:9px;border-radius:3px;display:inline-block;vertical-align:-1px;margin-right:4px}
+
+/* heatmap */
+.grid{display:grid;grid-template-rows:repeat(7,1fr);grid-auto-flow:column;gap:3px}
+.cell{aspect-ratio:1;border-radius:3px;background:#EAEAE3}
+.cell.l1{background:#C8D6CF}.cell.l2{background:#93B5A6}.cell.l3{background:#5F937C}.cell.l4{background:#3E8E6E}
+.cell.tdy{box-shadow:0 0 0 1.5px var(--red)}
+
+/* share */
+.share{width:100%;border:1px solid var(--ink);background:none;border-radius:10px;padding:12px 0;cursor:pointer;
+  font-family:var(--jp);font-size:14px;font-weight:700;color:var(--ink)}
+.share.ok{background:var(--green);border-color:var(--green);color:#fff}
+
+/* content sections */
+section{padding-top:52px;scroll-margin-top:64px}
+.snum{font-family:var(--mo);font-size:10.5px;letter-spacing:.16em;color:var(--ink3);display:block;margin-bottom:7px}
+section h2{font-size:clamp(22px,5.4vw,29px)}
+.lede{color:var(--ink2);font-size:14.5px;margin:11px 0 20px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px 7px;margin-bottom:11px}
+.box h3{font-size:15.5px;font-weight:700;margin-bottom:7px}
+.box p{font-size:14px}
+em{font-style:normal;background:linear-gradient(transparent 62%,#FBE7B8 62%);padding:0 1px}
+.note{font-size:13.5px;color:var(--ink2);background:#FCF1EE;border:1px solid #F2D9D2;border-radius:11px;padding:14px 15px;line-height:1.8}
+.note b{color:var(--red)}
+
+.vd{list-style:none;margin:0;padding:0}
+.vd li{display:grid;grid-template-columns:30px 1fr;gap:11px;padding:13px 0;border-bottom:1px solid var(--line)}
+.vd li:last-child{border-bottom:0}
+.mk{font-family:var(--disp);font-size:19px;font-weight:800;text-align:center;line-height:1.4}
+.m1{color:var(--green)}.m2{color:var(--gold)}.m3{color:var(--red)}
+.vd b{display:block;font-size:14.5px}
+.vd span{display:block;font-size:13px;color:var(--ink2);line-height:1.7}
+
+.tg{display:flex;border:1px solid var(--ink);border-radius:10px;overflow:hidden;margin-bottom:15px}
+.tg button{flex:1;border:0;background:none;padding:9px 0;cursor:pointer;font-family:var(--mo);font-size:12px;color:var(--ink)}
+.tg button.on{background:var(--ink);color:#fff}
+.bar{display:flex;height:10px;border-radius:99px;overflow:hidden;margin-bottom:13px}
+.bar i{display:block;height:100%}
+.slot{display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid var(--line2);font-size:14px}
+.slot:last-child{border-bottom:0}
+.sw{width:9px;height:9px;border-radius:2px;flex:0 0 auto}
+.slot .mi{margin-left:auto;font-family:var(--mo);font-size:11.5px;color:var(--ink2)}
+
+details.ph-b{background:var(--card);border:1px solid var(--line);border-left:4px solid;border-radius:var(--r);margin-bottom:11px}
+details.ph-b[data-p="1"]{border-left-color:#2E4A6B}
+details.ph-b[data-p="2"]{border-left-color:var(--green)}
+details.ph-b[data-p="3"]{border-left-color:var(--gold)}
+details.ph-b[data-p="4"]{border-left-color:var(--red)}
+details.ph-b>summary{list-style:none;cursor:pointer;padding:15px 16px}
+details.ph-b>summary::-webkit-details-marker{display:none}
+.pw{font-family:var(--mo);font-size:10px;letter-spacing:.12em;color:var(--ink3)}
+.pn{font-family:var(--disp);font-size:17px;font-weight:800;letter-spacing:-.02em;margin-top:3px;line-height:1.3}
+.pg{font-size:13px;color:var(--ink2);margin-top:5px;line-height:1.7}
+.po{font-family:var(--mo);font-size:10px;color:var(--ink3);margin-top:8px}
+details.ph-b[open] .po{display:none}
+.pb{padding:0 16px 7px;border-top:1px solid var(--line2)}
+.it{padding:13px 0;border-bottom:1px solid var(--line2)}
+.it:last-child{border-bottom:0}
+.ith{display:flex;gap:9px;align-items:baseline}
+.tag{font-family:var(--mo);font-size:9.5px;letter-spacing:.06em;border:1px solid var(--line);border-radius:5px;padding:2px 6px;color:var(--ink2);flex:0 0 auto}
+.ith b{font-size:14.5px}
+.bk{font-size:13.5px;margin-top:4px;line-height:1.7;color:var(--green)}
+.hw{font-size:13px;color:var(--ink2);margin-top:3px;line-height:1.75}
+
+ol.st{margin:0;padding:0;list-style:none;counter-reset:s}
+ol.st li{counter-increment:s;padding:11px 0 11px 33px;position:relative;border-bottom:1px solid var(--line);font-size:14px}
+ol.st li:last-child{border-bottom:0}
+ol.st li::before{content:counter(s);position:absolute;left:0;top:12px;font-family:var(--mo);font-size:11px;color:var(--red);border:1px solid var(--red);border-radius:99px;width:20px;height:20px;display:grid;place-items:center;line-height:1}
+
+.rk{list-style:none;margin:0;padding:0}
+.rk li{display:flex;gap:11px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line2);font-size:13.5px}
+.rk li:last-child{border-bottom:0}
+.rk .h{font-family:var(--mo);font-size:11px;color:var(--ink3);width:44px;flex:0 0 auto}
+.rk li.rc .h{color:var(--green);font-weight:700}
+.rk li.rc .nm{font-weight:700}
+.rk .de{margin-left:auto;text-align:right;color:var(--ink3);font-size:12px;flex:1}
+
+.exm{display:grid;grid-template-columns:auto 1fr;gap:0 13px}
+.exm .wn{font-family:var(--mo);font-size:11px;color:var(--ink2);padding:12px 13px 12px 0;border-right:1px solid var(--line);white-space:nowrap}
+.exm .wt{padding:12px 0;font-size:14px}
+.exm .wt small{display:block;color:var(--ink2);font-size:12.5px;line-height:1.7}
+
+details.tools{margin-top:34px;border-top:1px solid var(--line);padding-top:15px}
+details.tools summary{font-family:var(--mo);font-size:10.5px;letter-spacing:.1em;color:var(--ink3);cursor:pointer}
+textarea{width:100%;height:100px;font-family:var(--mo);font-size:10.5px;border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:11px;background:var(--card);color:var(--ink2)}
+.tb{border:1px solid var(--ink);background:none;border-radius:8px;padding:8px 15px;font-size:13px;cursor:pointer;margin-right:7px;color:var(--ink)}
+.st8{font-family:var(--mo);font-size:10px;color:var(--ink3);margin-top:10px}
+footer{margin-top:44px;padding-top:19px;border-top:1px solid var(--line);font-family:var(--mo);font-size:10.5px;color:var(--ink3);line-height:1.9}
+
+.rev-in{opacity:0;transform:translateY(14px)}
+.rev-in.sh{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.rev-in{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="nav"><div class="nav-in">
+  <a href="#top" class="mark">HOME</a><a href="#week">今週の5文</a><a href="#plan">年間計画</a>
+  <a href="#verdict">到達点</a><a href="#routine">1日の型</a><a href="#rank">ランク</a><a href="#exam">検定</a>
+</div></div>
+
+<div class="wrap" id="top">
+
+  <div class="hero">
+    <div class="kicker">44 → 45 / a year of rebuilding english</div>
+    <h1>1年 英語<br>再構築計画</h1>
+    <p class="sub">50週・250フレーズ。1日45分、週6日。ニュースも原書も1年では届かない — その代わり、話せるようにはなる。</p>
+  </div>
+
+  <div class="bento">
+    <div class="tile dark span2 rev-in">
+      <span class="lbl">Current rank</span>
+      <div class="rank-n" id="rankName">スタート地点</div>
+      <div class="rank-bar"><i id="rankBar" style="width:0%"></i></div>
+      <div class="rank-nx" id="rankNext"></div>
+      <div class="kpi">
+        <div><b id="kPts">0</b><span>ポイント</span></div>
+        <div><b id="kWeek">0/6</b><span>今週の日数</span></div>
+        <div><b id="kStreak">0</b><span>連続日数</span></div>
+        <div><b id="kHours">0.0</b><span>累計時間</span></div>
+      </div>
+    </div>
+
+    <div class="tile span2 rev-in"><div class="coach" id="coach">記録を始めましょう。</div></div>
+
+    <div class="tile rev-in" id="week">
+      <span class="lbl">This week</span>
+      <div class="wk-head"><span class="wk-no" id="wkNo">WEEK 01</span><span class="wk-ttl" id="wkTtl"></span></div>
+      <div class="wk-meta" id="wkMeta"></div>
+      <div id="phList"></div>
+      <div class="wk-nav">
+        <button type="button" id="wkPrev">← 前の週</button>
+        <button type="button" id="wkNow" class="now">今週</button>
+        <button type="button" id="wkNext">次の週 →</button>
+      </div>
+    </div>
+
+    <div class="tile rev-in">
+      <span class="lbl">Today</span>
+      <h3 id="tDate"></h3>
+      <div style="margin-top:9px">
+        <label class="task"><input type="checkbox" data-t="a"><span>音読・シャドーイング</span><span class="pt">+15</span></label>
+        <label class="task"><input type="checkbox" data-t="b"><span>瞬間英作文 / 文法</span><span class="pt">+15</span></label>
+        <label class="task"><input type="checkbox" data-t="c"><span>講座・多読・ニュース</span><span class="pt">+10</span></label>
+        <label class="task"><input type="checkbox" data-t="d"><span>声に出した（独り言・同僚）</span><span class="pt">+30</span></label>
+      </div>
+      <div class="mins" id="mins"></div>
+      <button class="save" id="save">今日を記録する</button>
+    </div>
+
+    <div class="tile span2 rev-in">
+      <span class="lbl">50 weeks of phrases</span>
+      <div class="track" id="track"></div>
+      <div class="tk-key">
+        <span><i style="background:#E9E9E2"></i>未着手</span>
+        <span><i style="background:var(--ink)"></i>完了</span>
+        <span><i style="background:#F3E4D3"></i>復習週</span>
+        <span><i style="background:var(--gold)"></i>復習完了</span>
+      </div>
+    </div>
+
+    <div class="tile span2 rev-in">
+      <span class="lbl">Study log — last 13 weeks</span>
+      <div class="grid" id="grid"></div>
+    </div>
+
+    <div class="tile span2 rev-in">
+      <button class="share" id="share">いまの記録を共有する</button>
+    </div>
+  </div>
+
+  <section id="verdict" class="rev-in">
+    <span class="snum">01</span>
+    <h2>1年で、どこまで届くか</h2>
+    <p class="lede">確保できるのは約230時間。B1（英検2級相当）に必要とされる350〜400時間には足りません。だから仕分けます。</p>
+    <ul class="vd">
+      <li><span class="mk m1">◎</span><div><b>職場の同僚と英語で会話する</b><span>日常話題・仕事の定型話題なら成立します</span></div></li>
+      <li><span class="mk m1">◎</span><div><b>来日した知人を案内する</b><span>場面が予測できるため準備が効く。最も達成しやすい目標です</span></div></li>
+      <li><span class="mk m2">○</span><div><b>突然の出来事に対処する</b><span>完璧な対応は無理。ただし聞き返し・確認・時間稼ぎで「切り抜ける」力は1〜2ヶ月で付きます</span></div></li>
+      <li><span class="mk m3">△</span><div><b>ニュースを理解する</b><span>学習者向けニュースは可能。BBC・CNNの通常速度は1年では届きません</span></div></li>
+      <li><span class="mk m3">△</span><div><b>英語で本を読む</b><span>Graded Readersは可能。一般のペーパーバック原書は1年では届きません</span></div></li>
+    </ul>
+    <p class="note" style="margin-top:15px"><b>結論。</b>会話系の3つに資源を集中し、ニュースと読書は「2年目に取り組める土台を作る」に留める。5つ並行させると、5つとも中途半端に終わります。</p>
+  </section>
+
+  <section id="diag" class="rev-in">
+    <span class="snum">02</span>
+    <h2>原因は語彙ではない</h2>
+    <p class="lede">「How was it?」で固まったのは、単語を知らないからではありません。was も it も中学1年の語です。</p>
+    <div class="box"><h3>音が処理できない</h3><p>実際には「ハウワズィッ？」と1語のように聞こえます。文字で知っている英語と、耳に届く音がつながっていない状態です。</p></div>
+    <div class="box"><h3>反応が自動化していない</h3><p>頭で日本語を組み立ててから英訳するため、会話の速度（1〜2秒）に間に合いません。</p></div>
+    <p><em>知識不足ではなく、処理速度の問題です。</em>単語帳を増やす・分厚い文法書をやる、に走ると1年後も同じ場所で固まります。必要なのは、少ない知識を口と耳で自動化すること。手続き記憶を使う作業なので、記憶力の良し悪しはほとんど影響しません。</p>
+  </section>
+
+  <section id="routine" class="rev-in">
+    <span class="snum">03</span>
+    <h2>1日の型</h2>
+    <p class="lede">原則はひとつ。インプット3割、口を動かす7割。目で読むだけの学習は、あなたの課題をひとつも解決しません。</p>
+    <div class="tg"><button id="b30" class="on" type="button">30分（最低ライン）</button><button id="b60" type="button">60分（標準）</button></div>
+    <div class="bar" id="bar"></div><div id="slots"></div>
+    <p class="note" style="margin-top:15px">第1期（1〜3ヶ月目）のみ、瞬間英作文の枠を<b>文法復習</b>に置き換えてください。瞬間英作文は4ヶ月目から始めます。</p>
+  </section>
+
+  <section id="plan" class="rev-in">
+    <span class="snum">04</span>
+    <h2>年間の進行と教材</h2>
+    <p class="lede">各期をタップすると、教材とやり方が開きます。</p>
+
+    <details class="ph-b" data-p="1" open>
+      <summary><div class="pw">MONTH 1—3 / WEEK 1—13</div><div class="pn">音の再インストールと、中学文法の口頭化</div>
+      <div class="pg">全体の成否を決める3ヶ月。ここで単語帳をやってはいけません。</div><div class="po">タップして開く</div></summary>
+      <div class="pb">
+        <div class="it"><div class="ith"><span class="tag">10分</span><b>発音</b></div>
+          <div class="bk">『英語耳』松澤喜好（KADOKAWA）／YouTube「あいうえおフォニックス」</div>
+          <div class="hw">1ヶ月で子音・母音を一巡。発音できない音は聞き取れないため、ここが最優先です。</div></div>
+        <div class="it"><div class="ith"><span class="tag">15分</span><b>文法の再構築</b></div>
+          <div class="bk">『中学英語をもう一度ひとつひとつわかりやすく。』（学研）</div>
+          <div class="hw">1日1〜2項目、読むだけ。ノートは取らない。3ヶ月で1周させます。</div></div>
+        <div class="it"><div class="ith"><span class="tag">15分</span><b>音読・シャドーイング</b></div>
+          <div class="bk">NHKラジオ『基礎英語 レベル2』（テキスト約600円／らじる★らじる・NHKゴガクアプリ）</div>
+          <div class="hw">聞く → テキストを見て音読 → 見ないでシャドーイング、の順で毎日。</div></div>
+      </div>
+    </details>
+
+    <details class="ph-b" data-p="2">
+      <summary><div class="pw">MONTH 4—6 / WEEK 14—26</div><div class="pn">発話の自動化と、実戦投入</div>
+      <div class="pg">日本語を見て1〜2秒で英語が口から出る状態を作ります。</div><div class="po">タップして開く</div></summary>
+      <div class="pb">
+        <div class="it"><div class="ith"><span class="tag">20分</span><b>瞬間英作文 — この期の主役</b></div>
+          <div class="bk">『どんどん話すための瞬間英作文トレーニング』森沢洋介（ベレ出版）</div>
+          <div class="hw">日本語を見て1〜2秒で口に出す。書かない。3周します。</div></div>
+        <div class="it"><div class="ith"><span class="tag">15分</span><b>音読パッケージ</b></div>
+          <div class="bk">『みるみる英語力がアップする音読パッケージトレーニング』森沢洋介</div>
+          <div class="hw">音読・シャドーイング・暗唱をセットで回します。</div></div>
+        <div class="it"><div class="ith"><span class="tag">10分</span><b>瞬発力</b></div>
+          <div class="bk">NHKラジオ『英会話タイムトライアル』</div>
+          <div class="hw">日本語→英語の瞬時変換。瞬間英作文と相性が良い講座です。</div></div>
+        <div class="it"><div class="ith"><span class="tag">5分</span><b>語彙</b></div>
+          <div class="bk">『キクタン Basic 4000』／アプリ mikan</div>
+          <div class="hw">1日5分だけ。音声必須。書いて覚えない。</div></div>
+        <div class="it"><div class="ith"><span class="tag">月2回</span><b>実戦開始</b></div>
+          <div class="hw">5ヶ月目から、職場の同僚に10分だけ依頼します。</div></div>
+      </div>
+    </details>
+
+    <details class="ph-b" data-p="3">
+      <summary><div class="pw">MONTH 7—9 / WEEK 27—39</div><div class="pn">話題の拡張と、多読の開始</div>
+      <div class="pg">扱える話題を増やし、英語を読む・聞く量を積み上げます。</div><div class="po">タップして開く</div></summary>
+      <div class="pb">
+        <div class="it"><div class="ith"><span class="tag">15分</span><b>会話講座を格上げ</b></div>
+          <div class="bk">NHKラジオ『ラジオ英会話』（大西泰斗）</div>
+          <div class="hw">この時期になれば消化できます。『基礎英語 レベル2』から移行。</div></div>
+        <div class="it"><div class="ith"><span class="tag">20分</span><b>瞬間英作文（実戦版）</b></div>
+          <div class="bk">『スラスラ話すための瞬間英作文シャッフルトレーニング』森沢洋介</div>
+          <div class="hw">文型がランダムに出るため、実際の会話に近い負荷がかかります。</div></div>
+        <div class="it"><div class="ith"><span class="tag">10分</span><b>多読スタート</b></div>
+          <div class="bk">ラダーシリーズ Level 1（IBC）→ Oxford Bookworms Starter / Stage 1</div>
+          <div class="hw">辞書を引かない。わからない語は飛ばす。つまらなければ捨てる。この3原則を守れないと多読は続きません。</div></div>
+        <div class="it"><div class="ith"><span class="tag">週2-3</span><b>ニュース入門</b></div>
+          <div class="bk">VOA Learning English／BBC Learning English "6 Minute English"／News in Levels</div>
+          <div class="hw">通常速度のニュースにはまだ触りません。学習者向け素材だけを使います。</div></div>
+      </div>
+    </details>
+
+    <details class="ph-b" data-p="4">
+      <summary><div class="pw">MONTH 10—12 / WEEK 40—50</div><div class="pn">目的への特化と、定着</div>
+      <div class="pg">「案内できる」を、勉強ではなく準備として仕上げます。</div><div class="po">タップして開く</div></summary>
+      <div class="pb">
+        <div class="it"><div class="ith"><span class="tag">主軸</span><b>日本案内スクリプトを書く</b></div>
+          <div class="hw">空港での出迎え、電車の乗り方、居酒屋の注文、神社の作法、両替、体調不良時の対応。場面ごとに自分の言うことを英語で書き、暗唱します。<em>勉強ではなく準備であり、最も費用対効果が高い作業です。</em></div></div>
+        <div class="it"><div class="ith"><span class="tag">多読</span><b>Stage 2—3 へ</b></div>
+          <div class="bk">Oxford Bookworms Stage 2〜3</div><div class="hw">累計2〜3万語を目標にします。</div></div>
+        <div class="it"><div class="ith"><span class="tag">聴解</span><b>崩れた音に慣れる</b></div>
+          <div class="bk">NHKラジオ『エンジョイ・シンプル・イングリッシュ』</div>
+          <div class="hw">語彙は簡単ですが音は自然に崩れているため、実戦的なリスニング教材になります。</div></div>
+        <div class="it"><div class="ith"><span class="tag">毎日</span><b>独り言英語 + AI音声会話</b></div>
+          <div class="hw">見たもの・考えたことを英語で言う。通勤中、風呂の中。無料で最も効果が高い練習です。</div></div>
+      </div>
+    </details>
+  </section>
+
+  <section id="rank" class="rev-in">
+    <span class="snum">05</span>
+    <h2>ランクの基準</h2>
+    <p class="lede">累計学習時間で上がります。称号は飾りではなく、その時間数で実際に起きる変化を書いてあります。</p>
+    <ul class="rk" id="rkList"></ul>
+    <p class="note" style="margin-top:15px"><b>連続日数は、折れてもかまいません。</b>計画は週6日です。休みの日にゼロでも問題なく、3日空いても再開すればいい。本当に見るべき数字は<b>今週の日数</b>と<b>累計時間</b>の2つです。</p>
+  </section>
+
+  <section id="colleague" class="rev-in">
+    <span class="snum">06</span>
+    <h2>職場の英語話者の活かし方</h2>
+    <p class="lede">最大の資産です。ただし「英語を教えてください」と頼むと双方が消耗します。この形にしてください。</p>
+    <ol class="st">
+      <li><b>5ヶ月目まで頼まない。</b>土台のない状態で話しても、失敗体験が増えるだけです。</li>
+      <li><b>時間を区切って依頼する。</b>「週に1回、昼休みに10分だけ、英語で雑談させてもらえませんか」</li>
+      <li><b>毎回テーマを事前に決めて予告する。</b>その週のフレーズ5文を使うと決めておけば、準備は済んでいます。</li>
+      <li><b>直してほしいのは文法ではなく「通じたかどうか」だけ。</b>そう伝えておきます。</li>
+      <li><b>終わったら言えなかった表現を3つだけメモ。</b>次週までに口に馴染ませます。</li>
+    </ol>
+  </section>
+
+  <section id="exam" class="rev-in">
+    <span class="snum">07</span>
+    <h2>検定の使い方</h2>
+    <p class="lede">合格自体は不要ですが、締切として使う価値があります。英検はスピーキング試験があり、目標と方向が一致します。</p>
+    <div class="exm">
+      <div class="wn">WEEK 22<br>2027年1月</div><div class="wt"><b>英検3級</b><small>中学卒業程度。腕試しとして受験します</small></div>
+      <div class="wn">WEEK 44<br>2027年6月</div><div class="wt"><b>英検準2級</b><small>余裕があれば準2級プラス。2025年度に新設された、準2級と2級の間の級です</small></div>
+    </div>
+    <p class="note" style="margin-top:15px">TOEIC L&amp;Rは<b>リスニングとリーディングのみ</b>で、話す力を測れません。受けるなら1年後の実力測定として1回で十分です。</p>
+  </section>
+
+  <section id="risk" class="rev-in">
+    <span class="snum">08</span>
+    <h2>正直に、最大の分岐点</h2>
+    <p>「スクールは考えていない」とのことですが、<b>オンライン英会話（月6,000〜7,000円前後、1日25分）は通学型スクールとは別物</b>です。話す量が独学の10倍以上になり、達成確率を大きく押し上げます。第2期以降に伸び悩んだら、選択肢として再検討する価値があります。</p>
+    <p>導入しない場合の代替は3つ。<b>独り言英語</b>（無料で最も効果が高い）、<b>AI音声会話</b>（恥をかかずに24時間練習できる）、<b>HelloTalk等の言語交換アプリ</b>。</p>
+    <div class="box" style="margin-top:15px"><h3>1日休んでも計画を捨てない</h3><p>3日空いても再開すればよい。挫折の9割は「一度崩れたのでもうやめた」で起きます。</p></div>
+  </section>
+
+  <section id="last" class="rev-in">
+    <span class="snum">09</span>
+    <h2>最後に</h2>
+    <p>1年で「ニュースが自由に聞き取れ、原書が読める」状態には届きません。</p>
+    <p>しかし<em>「同僚と英語で雑談し、来日した知人を案内し、聞き取れなくても会話を続けられる」状態には、この計画で十分に到達できます。</em>その土台の上に、2年目でニュースと読書を乗せる。それが最短ルートです。</p>
+  </section>
+
+  <details class="tools">
+    <summary>記録のバックアップ / 復元</summary>
+    <p class="st8" id="storInfo"></p>
+    <textarea id="dump" placeholder="ここに記録データが表示されます"></textarea>
+    <button class="tb" id="btnEx" type="button">書き出す</button>
+    <button class="tb" id="btnIm" type="button">読み込む</button>
+    <p class="st8">機種変更やブラウザのデータ削除で記録は消えます。ときどき書き出して、メモアプリに貼り付けて保管してください。</p>
+  </details>
+
+  <footer>1日45分 × 週6日 × 52週 ＝ 約230時間<br>50 weeks / 210 phrases / input 30% — output 70%</footer>
+</div>
+
+<script>
+(function(){"use strict";
+
+/* ===================== 50週フレーズ ===================== */
+/* [週番号, タイトル, [[英文, 和訳/場面], ...]]  null = 復習週 */
+var WK=[
+[1,"聞き返す・切り抜ける",[
+["Sorry, could you say that again?","もう一度お願いします"],
+["Could you speak more slowly, please?","もう少しゆっくりお願いします"],
+["I'm sorry, I didn't catch that.","聞き取れませんでした"],
+["Do you mean ... ?","…ということですか（言い換えて確認）"],
+["How do you say ... in English?","…は英語で何と言いますか"]]],
+[2,"出会いの最初の30秒",[
+["Nice to meet you. I'm Ken.","はじめまして、ケンです"],
+["How's it going?","調子どう？（Hi の代わりに使える）"],
+["Thanks for having me.","お招きありがとうございます"],
+["This is my colleague, Sato.","同僚の佐藤です（人を紹介する）"],
+["Sorry to keep you waiting.","お待たせしました"]]],
+[3,"「どうだった？」に答える",[
+["It was great. I really enjoyed it.","すごく良かったです"],
+["It was okay, I guess.","まあまあでした"],
+["Not bad, actually.","意外と悪くなかったです"],
+["It was better than I expected.","思っていたより良かったです"],
+["To be honest, it wasn't for me.","正直、自分には合いませんでした"]]],
+[4,"相づちとリアクション",[
+["That makes sense.","なるほど、筋が通っていますね"],
+["I know what you mean.","言いたいことわかります"],
+["Really? That's interesting.","へえ、面白いですね"],
+["Oh, I see.","ああ、そうなんですね"],
+["That sounds tough.","それは大変ですね"]]],
+[5,"自分のことを話す",[
+["I'm from Osaka, but I live in Tokyo now.","大阪出身で、今は東京に住んでいます"],
+["I work for a trading company.","商社で働いています"],
+["I have two kids.","子どもが2人います"],
+["I usually get up at six.","たいてい6時に起きます"],
+["In my free time, I like watching baseball.","暇なときは野球を見ます"]]],
+[6,"頼む・断る・許可を取る",[
+["Could you help me with this?","これを手伝ってもらえますか"],
+["Is it okay if I ask you something?","ひとつ聞いてもいいですか"],
+["Do you mind if I sit here?","ここに座ってもいいですか"],
+["I'd love to, but I can't today.","行きたいのですが今日は無理です"],
+["Can I get back to you on that?","それは後で返事してもいいですか"]]],
+[7,null],
+[8,"時間と予定",[
+["What time works for you?","何時が都合いいですか"],
+["I'm free after five.","5時以降なら空いています"],
+["Let's meet at the station at seven.","7時に駅で会いましょう"],
+["I'll be there in ten minutes.","あと10分で着きます"],
+["Something came up.","用事ができてしまって"]]],
+[9,"道と場所",[
+["Excuse me, how do I get to the station?","すみません、駅へはどう行きますか"],
+["It's just around the corner.","すぐそこの角です"],
+["Go straight and turn left at the light.","まっすぐ行って信号を左です"],
+["It's about a ten-minute walk.","歩いて10分ほどです"],
+["I think I'm lost.","道に迷ったみたいです"]]],
+[10,"買い物",[
+["I'm just looking, thanks.","見ているだけです"],
+["Do you have this in a smaller size?","これの小さいサイズはありますか"],
+["Can I try this on?","試着してもいいですか"],
+["How much is it?","いくらですか"],
+["I'll take it.","これをください"]]],
+[11,"レストランで",[
+["A table for two, please.","2名です"],
+["Could I see the menu?","メニューを見せてください"],
+["What do you recommend?","おすすめは何ですか"],
+["I'll have the same.","同じものをお願いします"],
+["Could we get the check, please?","お会計をお願いします"]]],
+[12,"交通機関",[
+["Does this train go to Shibuya?","この電車は渋谷に行きますか"],
+["Which line should I take?","どの路線に乗ればいいですか"],
+["You need to change trains at Shinjuku.","新宿で乗り換えが必要です"],
+["Is this seat taken?","この席は空いていますか"],
+["We missed the last train.","終電を逃しました"]]],
+[13,"体調とトラブル",[
+["I don't feel well.","体調が良くありません"],
+["I have a headache.","頭が痛いです"],
+["I think I left my bag on the train.","電車にカバンを忘れたようです"],
+["I need to see a doctor.","医者に診てもらいたいです"],
+["Is there a pharmacy near here?","この近くに薬局はありますか"]]],
+[14,null],
+[15,"職場のあいさつと雑談",[
+["Morning! How was your weekend?","おはよう、週末どうだった？"],
+["Are you busy today?","今日は忙しいですか"],
+["Long day, huh?","長い一日だったね"],
+["Have a good one.","じゃあまた（帰り際に）"],
+["See you tomorrow.","また明日"]]],
+[16,"仕事の状況を伝える",[
+["I'm working on it.","今やっているところです"],
+["It's almost done.","もうすぐ終わります"],
+["I'll send it to you by Friday.","金曜までに送ります"],
+["I'm a little behind schedule.","少し予定より遅れています"],
+["Let me double-check.","もう一度確認させてください"]]],
+[17,"依頼と確認（職場）",[
+["Could you take a look at this?","これを見てもらえますか"],
+["Just to make sure, you mean ... right?","念のため、…ということですよね"],
+["Let me know if you need anything.","何かあれば言ってください"],
+["Would it be possible to move the meeting?","会議をずらすことは可能でしょうか"],
+["Sorry to bother you, but ...","お忙しいところすみませんが…"]]],
+[18,"会議・オンライン会議",[
+["Can everyone hear me?","みなさん聞こえていますか"],
+["Sorry, you're breaking up.","すみません、音声が途切れています"],
+["Could you share your screen?","画面を共有してもらえますか"],
+["Let me get back to that later.","その件は後ほど戻ります"],
+["That's all from me.","私からは以上です"]]],
+[19,"メールで使う一言",[
+["Thanks for getting back to me.","ご返信ありがとうございます"],
+["Please find the file attached.","ファイルを添付しました"],
+["Just a quick reminder about ...","…について念のためご連絡です"],
+["Let me know what you think.","ご意見をお聞かせください"],
+["Sorry for the late reply.","返信が遅れてすみません"]]],
+[20,"感謝と謝罪",[
+["Thanks for your help. I really appreciate it.","助かりました。本当に感謝します"],
+["That's very kind of you.","ご親切にありがとうございます"],
+["My apologies for the confusion.","混乱させてしまい申し訳ありません"],
+["It was my fault.","私のミスです"],
+["No worries at all.","まったく問題ありません"]]],
+[21,null],
+[22,"好き・嫌いを言う",[
+["I'm really into cycling these days.","最近サイクリングにハマっています"],
+["I'm not a big fan of coffee.","コーヒーはあまり得意ではありません"],
+["I could eat this every day.","これなら毎日でも食べられます"],
+["It's not really my thing.","あまり自分向きではないです"],
+["I used to play the guitar.","昔ギターを弾いていました"]]],
+[23,"意見を言う",[
+["I think so too.","私もそう思います"],
+["In my opinion, it's too expensive.","私の意見では、それは高すぎます"],
+["From my point of view, ...","私の見方では…"],
+["I'd say it depends.","場合によりますね"],
+["That's a good point.","それは良い指摘ですね"]]],
+[24,"賛成と反対",[
+["I couldn't agree more.","まったく同感です"],
+["I see your point, but ...","おっしゃることはわかりますが…"],
+["I'm not so sure about that.","それはどうでしょうか"],
+["Fair enough.","なるほど、それなら納得です"],
+["Let's agree to disagree.","意見が違うということにしましょう"]]],
+[25,"提案する",[
+["Why don't we take a break?","少し休憩しませんか"],
+["How about Friday instead?","代わりに金曜はどうですか"],
+["Do you want me to help?","手伝いましょうか"],
+["It might be better to ask him first.","先に彼に聞いた方がいいかもしれません"],
+["Let's give it a try.","やってみましょう"]]],
+[26,"理由を伝える",[
+["That's why I called you.","だから電話したんです"],
+["The reason is that we're short on time.","理由は時間が足りないからです"],
+["Because of the rain, we canceled it.","雨のため中止しました"],
+["Thanks to your advice, it worked out.","あなたの助言のおかげでうまくいきました"],
+["It's due to a system error.","システムエラーが原因です"]]],
+[27,"ぼかす・やわらげる",[
+["I'm afraid I can't.","申し訳ないのですが、できません"],
+["It's kind of complicated.","ちょっと込み入っていて"],
+["Maybe we should think about it again.","もう一度考えた方がいいかもしれません"],
+["I'd rather not, if that's okay.","できれば遠慮したいのですが"],
+["Something like that.","まあ、そんな感じです"]]],
+[28,null],
+[29,"空港で迎える",[
+["Welcome to Japan! How was your flight?","ようこそ日本へ。フライトはどうでした？"],
+["You must be tired.","お疲れでしょう"],
+["Let me carry your bag.","荷物を持ちますよ"],
+["The hotel is about an hour from here.","ホテルはここから1時間ほどです"],
+["Do you want to grab something to eat first?","先に何か食べていきますか"]]],
+[30,"電車の乗り方を説明する",[
+["You can use this IC card for almost everything.","このICカードはほぼ何にでも使えます"],
+["Tap here when you get on and off.","乗るときと降りるときにここにタッチします"],
+["This train gets crowded in the morning.","この電車は朝混みます"],
+["Let's take the express. It's faster.","急行に乗りましょう。その方が速いです"],
+["We get off at the next stop.","次の駅で降ります"]]],
+[31,"食べ物と居酒屋",[
+["Have you ever tried natto?","納豆を食べたことはありますか"],
+["It's a bit of an acquired taste.","好き嫌いが分かれる味です"],
+["We usually share dishes here.","ここでは料理を分け合うのが普通です"],
+["Is there anything you can't eat?","食べられないものはありますか"],
+["Let's start with a beer.","まずビールにしましょう"]]],
+[32,"神社・寺・作法",[
+["You wash your hands here before you go in.","入る前にここで手を洗います"],
+["Bow twice, clap twice, then bow once.","二礼二拍手一礼です"],
+["Take off your shoes here.","ここで靴を脱いでください"],
+["This shrine is about four hundred years old.","この神社は約400年前のものです"],
+["Please don't take pictures inside.","中では写真を撮らないでください"]]],
+[33,"日本を説明する",[
+["It's a kind of Japanese ... ","日本の…のようなものです（最強の説明表現）"],
+["It's similar to ..., but ...","…に似ていますが、…"],
+["We do this to bring good luck.","縁起を担ぐためにこうします"],
+["It depends on the region.","地域によって違います"],
+["There's no exact word for it in English.","英語にぴったりの言葉がないんです"]]],
+[34,"案内中のトラブル",[
+["Give me a second, I'll ask someone.","少し待ってください、誰かに聞いてきます"],
+["We're going the wrong way.","道を間違えました"],
+["It looks like it's closed today.","今日は休みのようです"],
+["Don't worry, we have plenty of time.","大丈夫、時間はたっぷりあります"],
+["Let's take a taxi instead.","代わりにタクシーにしましょう"]]],
+[35,null],
+[36,"話を広げる質問",[
+["What made you decide to come to Japan?","何がきっかけで日本に来ることに？"],
+["What's it like in Toronto?","トロントってどんなところですか"],
+["How long have you been doing that?","それはどのくらい続けているんですか"],
+["What do you do on weekends?","週末は何をしていますか"],
+["Tell me more about that.","もっと聞かせてください"]]],
+[37,"話題を変える・戻す",[
+["By the way, ...","ところで…"],
+["That reminds me, ...","それで思い出したんですが…"],
+["Anyway, as I was saying ...","ともあれ、さっきの話ですが…"],
+["Speaking of which, ...","その話で言えば…"],
+["Where were we?","どこまで話しましたっけ"]]],
+[38,"深く反応する",[
+["That must have been hard.","それは大変だったでしょうね"],
+["I can imagine.","想像がつきます"],
+["Good for you!","よかったですね！"],
+["No way! Seriously?","うそでしょ、本当に？"],
+["The same thing happened to me.","私も同じことがありました"]]],
+[39,"経験を語る",[
+["I've never been abroad before.","これまで海外に行ったことがありません"],
+["Have you ever been to Kyoto?","京都に行ったことはありますか"],
+["I've been working here for eight years.","ここで8年働いています"],
+["I've just finished it.","ちょうど終わったところです"],
+["I haven't seen him lately.","最近彼に会っていません"]]],
+[40,"過去のことを語る",[
+["When I was a kid, I used to play outside.","子どもの頃はよく外で遊んでいました"],
+["I was going to call you, but ...","電話しようと思ったのですが…"],
+["It happened about three years ago.","3年ほど前のことです"],
+["At that time, I had no idea.","その時はまったく知りませんでした"],
+["I should have told you earlier.","もっと早く言うべきでした"]]],
+[41,"未来と計画を語る",[
+["I'm thinking of visiting Canada next year.","来年カナダに行こうと思っています"],
+["We're planning to move in April.","4月に引っ越す予定です"],
+["I'll probably stay home this weekend.","今週末はたぶん家にいます"],
+["It's supposed to rain tomorrow.","明日は雨のはずです"],
+["I'm looking forward to it.","楽しみにしています"]]],
+[42,null],
+[43,"短い返し",[
+["Sounds good.","いいですね"],
+["Same here.","私もです"],
+["Not really.","そうでもないです"],
+["Kind of.","まあ、ちょっと"],
+["You too!","あなたもね！"]]],
+[44,"突発対応",[
+["Hold on a second.","ちょっと待ってください"],
+["Can I call you back?","かけ直してもいいですか"],
+["Something's wrong with my computer.","パソコンの調子がおかしいです"],
+["I'm on my way.","今向かっています"],
+["Let me check and get back to you.","確認して折り返します"]]],
+[45,"遠回しに伝える",[
+["I'm not sure that's a good idea.","それが良い案かどうかわかりません"],
+["That might be difficult.","それは難しいかもしれません"],
+["Let me sleep on it.","一晩考えさせてください"],
+["To be honest with you, ...","正直に言うと…"],
+["I hate to say this, but ...","言いにくいのですが…"]]],
+[46,"軽い会話とユーモア",[
+["Tell me about it.","ほんとにね（強い同意）"],
+["You're kidding, right?","冗談ですよね？"],
+["I'm just kidding.","冗談ですよ"],
+["That's a first.","それは初めてだ"],
+["Story of my life.","いつものことだよ"]]],
+[47,"ニュースと時事の話題",[
+["Did you hear about the news?","あのニュース聞きました？"],
+["What do you think about that?","それについてどう思いますか"],
+["I read somewhere that ...","どこかで読んだのですが…"],
+["It's all over the news.","そのニュースで持ちきりです"],
+["I don't really follow politics.","政治はあまり追っていません"]]],
+[48,"別れと再会の約束",[
+["It was great talking with you.","お話しできてよかったです"],
+["Let's keep in touch.","連絡を取り合いましょう"],
+["Say hi to your family for me.","ご家族によろしく伝えてください"],
+["Let me know when you're in Japan.","日本に来るときは教えてください"],
+["Take care.","気をつけて"]]],
+[49,null],
+[50,"総仕上げ",[
+["I'm sorry, I didn't catch that.","第1週｜すべての土台"],
+["It was better than I expected.","第3週｜感想を言う"],
+["Just to make sure, you mean ... right?","第17週｜確認する"],
+["It's a kind of Japanese ...","第33週｜日本を説明する"],
+["What made you decide to come to Japan?","第36週｜会話を広げる"]]]
+];
+
+/* ===================== storage ===================== */
+var Store=(function(){
+  var mem={},ls=null,mode="一時保存（このページを閉じると記録は消えます）";
+  try{localStorage.setItem("__t","1");localStorage.removeItem("__t");ls=localStorage;mode="この端末のブラウザに保存されています";}catch(e){}
+  return{mode:function(){return mode},
+    get:async function(k){if(ls)return ls.getItem(k);
+      try{if(window.storage){var r=await window.storage.get(k);if(r){mode="Claude内に保存されています";return r.value}}}catch(e){}
+      return mem[k]||null},
+    set:async function(k,v){if(ls){try{ls.setItem(k,v);return}catch(e){}}
+      try{if(window.storage){await window.storage.set(k,v);mode="Claude内に保存されています";return}}catch(e){}
+      mem[k]=v}};
+})();
+var KEY="eigo1y:v2", D={log:{},ph:{},start:null};
+
+/* ===================== date ===================== */
+function key(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function add(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x}
+function wkStart(d){var x=new Date(d);x.setHours(0,0,0,0);x.setDate(x.getDate()-x.getDay());return x}
+var today=new Date(),tKey=key(today);
+function curWeek(){
+  if(!D.start)return 1;
+  var s=new Date(D.start+"T00:00:00"),diff=Math.floor((wkStart(today)-wkStart(s))/864e5/7);
+  return Math.min(50,Math.max(1,diff+1));
+}
+
+/* ===================== ranks ===================== */
+var RK=[[0,"スタート地点","記録を始めた日が起点になります"],[5,"発音の入口","口の形が変わり始めます"],
+[15,"耳が動き出す","聞こえ方が変わる最初の地点"],[30,"中学文法を一周","土台が揃います"],
+[50,"口が回り始める","考えずに出る文が増えます"],[80,"会話の入口","準備した話題なら成立します"],
+[120,"実戦投入","同僚との週1回が機能し始めます"],[170,"案内できる","来日した知人を案内できる水準"],
+[230,"1年 完走","2年目の土台が完成しました"]];
+
+/* ===================== points ===================== */
+var TP={a:15,b:15,c:10,d:30};
+function dayPt(e){var p=e.min||0;(e.tasks||[]).forEach(function(t){p+=TP[t]||0});if((e.tasks||[]).length===4)p+=20;return p}
+function phDone(w){var a=D.ph[w]||[];return a.length}
+function totals(){
+  var pts=0,min=0,days=0,k;
+  for(k in D.log){var e=D.log[k];if(!e)continue;pts+=dayPt(e);min+=e.min||0;days++}
+  for(k in D.ph){var n=(D.ph[k]||[]).length;pts+=n*8;if(n>=5)pts+=50}
+  var bw=0,i,j;
+  for(i=0;i<60;i++){var c=0,s=add(wkStart(today),-7*i);
+    for(j=0;j<7;j++){if(D.log[key(add(s,j))])c++}
+    if(c>=6)bw++}
+  pts+=bw*100;
+  return{pts:pts,min:min,days:days}
+}
+function weekCount(){var s=wkStart(today),c=0;for(var i=0;i<7;i++){if(D.log[key(add(s,i))])c++}return c}
+function streak(){var n=0,d=new Date(today);if(!D.log[key(d)])d=add(d,-1);while(D.log[key(d)]){n++;d=add(d,-1)}return n}
+function gap(){var d=add(today,-1),n=0;while(n<400&&!D.log[key(d)]){n++;d=add(d,-1)}return n}
+
+/* ===================== render ===================== */
+var viewWeek=1;
+function render(){
+  var t=totals(),hrs=t.min/60,wc=weekCount(),st=streak();
+  document.getElementById("kPts").textContent=t.pts.toLocaleString();
+  document.getElementById("kWeek").textContent=wc+"/6";
+  document.getElementById("kStreak").textContent=st;
+  document.getElementById("kHours").textContent=hrs.toFixed(1);
+
+  var idx=0;for(var i=0;i<RK.length;i++){if(hrs>=RK[i][0])idx=i}
+  document.getElementById("rankName").textContent=RK[idx][1];
+  var nx=RK[idx+1];
+  if(nx){var lo=RK[idx][0];
+    document.getElementById("rankBar").style.width=Math.min(100,(hrs-lo)/(nx[0]-lo)*100)+"%";
+    document.getElementById("rankNext").textContent="次「"+nx[1]+"」まで あと "+Math.max(0,nx[0]-hrs).toFixed(1)+" 時間";
+  }else{document.getElementById("rankBar").style.width="100%";
+    document.getElementById("rankNext").textContent="230時間 到達。完走です。"}
+
+  var rl=document.getElementById("rkList");rl.innerHTML="";
+  RK.forEach(function(r){var li=document.createElement("li");if(hrs>=r[0])li.className="rc";
+    li.innerHTML='<span class="h">'+r[0]+'h</span><span class="nm">'+r[1]+'</span><span class="de">'+r[2]+'</span>';rl.appendChild(li)});
+
+  /* track */
+  var tk=document.getElementById("track");tk.innerHTML="";var cw=curWeek();
+  WK.forEach(function(w){
+    var b=document.createElement("button"),rev=!w[2],n=phDone(w[0]);
+    b.type="button";b.className="cellw"+(rev?" rev":"")+(n>=(rev?3:5)?" done":"")+(w[0]===cw?" now":"");
+    b.textContent=w[0];b.title="第"+w[0]+"週 "+(w[1]||"復習");
+    b.onclick=function(){viewWeek=w[0];drawWeek();document.getElementById("week").scrollIntoView({block:"center"})};
+    tk.appendChild(b);
+  });
+
+  /* heatmap */
+  var g=document.getElementById("grid");g.innerHTML="";
+  var end=wkStart(today),start=add(end,-7*12);
+  for(var d2=new Date(start);d2<=add(end,6);d2=add(d2,1)){
+    var c=document.createElement("div"),k2=key(d2),e2=D.log[k2];c.className="cell";
+    if(e2){var m=e2.min||0;c.className+=" l"+(m>=60?4:m>=45?3:m>=30?2:1)}
+    if(k2===tKey)c.className+=" tdy";
+    c.title=k2+(e2?"  "+(e2.min||0)+"分":"");g.appendChild(c);
+  }
+  document.getElementById("storInfo").textContent=Store.mode();
+}
+
+/* ---- week panel ---- */
+function drawWeek(){
+  var w=WK[viewWeek-1],cw=curWeek(),list=document.getElementById("phList");
+  document.getElementById("wkNo").textContent="WEEK "+String(w[0]).padStart(2,"0");
+  document.getElementById("wkTtl").textContent=w[1]||"復習週";
+  var done=(D.ph[w[0]]||[]).length;
+  document.getElementById("wkMeta").textContent=(w[0]===cw?"今週":"第"+w[0]+"週")+" ・ "+(w[2]?done+"/5 覚えた ・ 1文 +8pt / 全部で +50pt":done+"/3 完了");
+  list.innerHTML="";
+  if(w[2]){
+    w[2].forEach(function(p,i){
+      var lab=document.createElement("label");lab.className="ph";
+      var chk=(D.ph[w[0]]||[]).indexOf(i)>=0;
+      lab.innerHTML='<input type="checkbox"'+(chk?" checked":"")+'><div><div class="ph-en">'+p[0]+'</div><div class="ph-ja">'+p[1]+'</div></div>';
+      lab.querySelector("input").onchange=async function(){
+        var a=D.ph[w[0]]||[],pos=a.indexOf(i);
+        if(this.checked){if(pos<0)a.push(i)}else if(pos>=0)a.splice(pos,1);
+        D.ph[w[0]]=a;await save();render();drawWeek();
+        if(a.length>=5)coach(false,"第"+w[0]+"週、5文すべて完了。＋50pt。次はこれを実際に口から出す番です。");
+      };
+      list.appendChild(lab);
+    });
+  }else{
+    var from=Math.max(1,w[0]-6),n=0;
+    for(var i2=from;i2<w[0];i2++){if(WK[i2-1][2])n+=5}
+    var box=document.createElement("div");box.className="rv";
+    box.innerHTML="<b>復習週です。新しい文は増やしません。</b><ul>"+
+      "<li>第"+from+"週〜第"+(w[0]-1)+"週の <b>"+n+"文</b> を、和訳だけ見て1〜2秒で言う</li>"+
+      "<li>言えなかった文に印をつけ、3回ずつ音読する</li>"+
+      "<li>そのうち5文を、同僚との会話か独り言で実際に使う</li></ul>";
+    list.appendChild(box);
+    var ck=["和訳から1〜2秒で言えた","言えなかった文を音読した","5文を実際に使った"];
+    ck.forEach(function(txt,i){
+      var lab=document.createElement("label");lab.className="ph";
+      var chk=(D.ph[w[0]]||[]).indexOf(i)>=0;
+      lab.innerHTML='<input type="checkbox"'+(chk?" checked":"")+'><div><div class="ph-ja" style="font-size:14px;color:var(--ink)">'+txt+'</div></div>';
+      lab.querySelector("input").onchange=async function(){
+        var a=D.ph[w[0]]||[],pos=a.indexOf(i);
+        if(this.checked){if(pos<0)a.push(i)}else if(pos>=0)a.splice(pos,1);
+        D.ph[w[0]]=a;await save();render();drawWeek();
+      };
+      list.appendChild(lab);
+    });
+  }
+  document.getElementById("wkPrev").disabled=viewWeek<=1;
+  document.getElementById("wkNext").disabled=viewWeek>=50;
+}
+document.getElementById("wkPrev").onclick=function(){if(viewWeek>1){viewWeek--;drawWeek()}};
+document.getElementById("wkNext").onclick=function(){if(viewWeek<50){viewWeek++;drawWeek()}};
+document.getElementById("wkNow").onclick=function(){viewWeek=curWeek();drawWeek()};
+
+/* ===================== coach ===================== */
+var LINES=["音読は、意味を思い浮かべながら声を出すと効果が変わります。",
+"聞き取れなかった音は、自分でも発音できていない音です。",
+"書いて覚えない。声に出して覚える。今日もそれだけです。",
+"疲れている日は15分でいい。ゼロと15分の差は決定的です。",
+"今週の5文を、今日1回でも口に出しましたか。"];
+function coach(saved,force){
+  var el=document.getElementById("coach");
+  if(force){el.textContent=force;return}
+  var t=totals(),hrs=t.min/60,wc=weekCount(),st=streak(),gp=gap(),m;
+  if(t.days===0){m="記録は今日から始まります。1年後のあなたは、この日を起点に数えることになります。";}
+  else if(saved){
+    if(t.days===1)m="1日目、記録。まずは1週間、続けてみてください。";
+    else if(gp>=3)m=gp+"日空きました。3日空いても再開すればいい、と決めてありましたね。今日でリセットは終わりです。";
+    else if(wc>=6)m="今週6日。計画通りです。この週を50回積むと、1年後に届きます。";
+    else if(st>0&&st%30===0)m=st+"日連続。ここまで来ると、やらない日の方が落ち着かないはずです。";
+    else if(st>0&&st%7===0)m=st+"日連続。習慣として定着し始めています。";
+    else if((D.log[tKey].tasks||[]).indexOf("d")>=0)m="今日は声に出しましたね。これが一番効く時間です。";
+    else if((D.log[tKey].min||0)>=60)m="60分。今日は貯金ができました。";
+    else if((D.log[tKey].min||0)<=15)m="15分でも、ゼロとは決定的に違います。明日につながりました。";
+    else m="記録しました。累計 "+hrs.toFixed(1)+" 時間。着実に積み上がっています。";
+  }else{
+    if(D.log[tKey])m="今日は記録済みです。累計 "+hrs.toFixed(1)+" 時間、今週 "+wc+" 日。";
+    else if(gp>=3)m=gp+"日空いています。計画は捨てない、と決めてありました。今日15分やれば、それで戻れます。";
+    else if(wc>=6)m="今週はすでに6日。今日は休んでも計画通りです。";
+    else m=LINES[new Date().getDate()%LINES.length];
+  }
+  el.textContent=m;
+}
+
+/* ===================== today ===================== */
+var boxes=document.querySelectorAll(".task input"),mB=[],cMin=30;
+["15","30","45","60","75+"].forEach(function(l,i){
+  var v=[15,30,45,60,80][i],b=document.createElement("button");
+  b.type="button";b.textContent=l;b.dataset.v=v;
+  b.onclick=function(){cMin=v;paintMin()};
+  document.getElementById("mins").appendChild(b);mB.push(b);
+});
+function paintMin(){mB.forEach(function(b){b.classList.toggle("on",Number(b.dataset.v)===cMin)})}
+var wd=["日","月","火","水","木","金","土"];
+document.getElementById("tDate").textContent=(today.getMonth()+1)+"月"+today.getDate()+"日（"+wd[today.getDay()]+"）";
+
+async function save(){await Store.set(KEY,JSON.stringify(D))}
+var sv=document.getElementById("save");
+sv.onclick=async function(){
+  var ts=[];boxes.forEach(function(b){if(b.checked)ts.push(b.dataset.t)});
+  if(!D.start)D.start=tKey;
+  D.log[tKey]={min:cMin,tasks:ts};
+  await save();render();drawWeek();coach(true);
+  sv.textContent="記録しました　＋"+dayPt(D.log[tKey])+"pt";sv.classList.add("done");
+  setTimeout(function(){sv.textContent="今日の記録を更新する";sv.classList.remove("done")},2600);
+};
+function loadToday(){var e=D.log[tKey];if(!e)return;cMin=e.min||30;paintMin();
+  boxes.forEach(function(b){b.checked=(e.tasks||[]).indexOf(b.dataset.t)>=0});
+  sv.textContent="今日の記録を更新する"}
+
+/* ===================== share ===================== */
+document.getElementById("share").onclick=async function(){
+  var t=totals(),cw=curWeek(),w=WK[cw-1],idx=0,hrs=t.min/60;
+  for(var i=0;i<RK.length;i++){if(hrs>=RK[i][0])idx=i}
+  var txt="【英語やり直し 1年計画】\n"+t.days+"日目 ／ 累計 "+hrs.toFixed(1)+"時間 ／ "+t.pts.toLocaleString()+"pt\n"+
+    "ランク: "+RK[idx][1]+"\n今週: 第"+cw+"週「"+(w[1]||"復習週")+"」\n"+location.href;
+  var btn=this;
+  try{
+    if(navigator.share){await navigator.share({title:"1年 英語再構築計画",text:txt});return}
+    await navigator.clipboard.writeText(txt);
+    btn.textContent="コピーしました";btn.classList.add("ok");
+    setTimeout(function(){btn.textContent="いまの記録を共有する";btn.classList.remove("ok")},2200);
+  }catch(e){}
+};
+
+/* ===================== backup ===================== */
+document.getElementById("btnEx").onclick=function(){document.getElementById("dump").value=JSON.stringify(D)};
+document.getElementById("btnIm").onclick=async function(){
+  try{var v=JSON.parse(document.getElementById("dump").value);
+    if(typeof v!=="object"||!v)throw 0;
+    D={log:v.log||{},ph:v.ph||{},start:v.start||null};
+    await save();loadToday();viewWeek=curWeek();drawWeek();render();coach(false);
+    document.getElementById("storInfo").textContent="読み込みました。"+Store.mode();
+  }catch(e){document.getElementById("storInfo").textContent="読み込めませんでした。書き出したデータをそのまま貼り付けてください。"}
+};
+
+/* ===================== routine toggle ===================== */
+var plans={30:[["音読・シャドーイング",15,"#2E4A6B"],["瞬間英作文",15,"#D0402E"]],
+60:[["発音・語彙",5,"#E5A33C"],["音読・シャドーイング",20,"#2E4A6B"],["瞬間英作文",20,"#D0402E"],["講座・多読・ニュース",15,"#3E8E6E"]]};
+var bar=document.getElementById("bar"),slots=document.getElementById("slots"),
+    b30=document.getElementById("b30"),b60=document.getElementById("b60");
+function draw(t){bar.innerHTML="";slots.innerHTML="";
+  plans[t].forEach(function(s){
+    var i=document.createElement("i");i.style.background=s[2];i.style.width=(s[1]/t*100)+"%";bar.appendChild(i);
+    var d=document.createElement("div");d.className="slot";
+    d.innerHTML='<span class="sw" style="background:'+s[2]+'"></span><span>'+s[0]+'</span><span class="mi">'+s[1]+'分</span>';
+    slots.appendChild(d)});
+  b30.classList.toggle("on",t===30);b60.classList.toggle("on",t===60)}
+b30.onclick=function(){draw(30)};b60.onclick=function(){draw(60)};draw(30);
+
+/* ===================== scroll reveal ===================== */
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("sh");io.unobserve(e.target)}})},{threshold:.08});
+  document.querySelectorAll(".rev-in").forEach(function(el){io.observe(el)});
+}else{document.querySelectorAll(".rev-in").forEach(function(el){el.classList.add("sh")})}
+
+/* ===================== boot ===================== */
+(async function(){
+  try{var raw=await Store.get(KEY);if(raw){var v=JSON.parse(raw);D={log:v.log||{},ph:v.ph||{},start:v.start||null}}}catch(e){}
+  paintMin();loadToday();viewWeek=curWeek();drawWeek();render();coach(false);
+})();
+})();
+</script>
+</body>
+</html>
